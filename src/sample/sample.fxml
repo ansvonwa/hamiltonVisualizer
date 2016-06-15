@@ -8,7 +8,7 @@
     <StackPane fx:id="stackPane" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                AnchorPane.rightAnchor="0.0">
         <children>
-            <Canvas height="200.0" width="200.0" fx:id="canvas"/>
+            <Canvas fx:id="canvas"/>
         </children>
     </StackPane>
 </AnchorPane>
