@@ -64,7 +64,11 @@ public class Node {
         if (isStartNode()) {
             gc.setFill(Color.LIGHTGREEN);
         } else if (isEndNode()) {
-            gc.setFill(Color.LIGHTBLUE);
+            if (isHighlight()) {
+                gc.setFill(Color.CORNFLOWERBLUE);
+            } else {
+                gc.setFill(Color.LIGHTBLUE);
+            }
         } else if (isHighlight()) {
             gc.setFill(Color.ORANGE);
             gc.setLineWidth(2);

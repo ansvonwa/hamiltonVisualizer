@@ -24,6 +24,8 @@ public class Solver extends Thread {
                 continue;
             }
             if (node.equals(endNode)) {
+                node.setHighlight(true);
+                node.setHighlight(false);
                 if (visitedNodes.size() + 1 == Node.getAll().size()) {
                     return 1;
                 }
