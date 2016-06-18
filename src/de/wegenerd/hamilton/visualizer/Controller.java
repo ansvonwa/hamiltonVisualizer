@@ -81,6 +81,14 @@ public class Controller implements Initializable {
                 } else if (data[10].equals("yellow")) {
                     node.setEndNode(true);
                 }
+            } else if (data[0].equals("edge")) {
+                Node from = Node.get(data[1]);
+                Node to = Node.get(data[2]);
+                if (from == null || to == null) {
+                    System.err.println("Edge definition with non existing node. Was the edge defined before the node?");
+                    continue;
+                }
+                Edge edge = from.connectTo(to);
             }
         }
 
@@ -98,9 +106,11 @@ public class Controller implements Initializable {
         gc.setStroke(Color.BLACK);
         gc.setFill(Color.BLACK);
         gc.clearRect(0, 0, getWidth(), getHeight());
+        for (Edge edge : Edge.getAll()) {
+            edge.draw(gc);
+        }
         for (Node node : Node.getAll()) {
             node.draw(gc);
         }
-
     }
 }

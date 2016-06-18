@@ -3,6 +3,7 @@ package de.wegenerd.hamilton.visualizer;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
@@ -36,6 +37,14 @@ public class Node {
         return node;
     }
 
+    public static Node get(int id) {
+        return nodeMap.get(id);
+    }
+
+    public static Node get(String id) {
+        return Node.get(new Integer(id));
+    }
+
     public static Node create(String id, String x, String y) {
         return Node.create(new Integer(id), new Double(x), new Double(y));
     }
@@ -60,6 +69,7 @@ public class Node {
         gc.fillOval(getX(), getY(), getWidth(), getHeight());
         gc.strokeOval(getX(), getY(), getWidth(), getHeight());
         gc.setFill(Color.BLACK);
+        gc.setFont(Font.font(18));
         gc.setTextAlign(TextAlignment.CENTER);
         gc.setTextBaseline(VPos.CENTER);
         gc.fillText(Integer.toString(id), getX() + getWidth() / 2, getY() + getHeight() / 2);
@@ -105,5 +115,9 @@ public class Node {
             startNode = false;
         }
         this.endNode = endNode;
+    }
+
+    public Edge connectTo(Node to) {
+        return new Edge(this, to);
     }
 }
