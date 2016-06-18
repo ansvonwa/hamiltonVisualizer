@@ -1,10 +1,13 @@
 package de.wegenerd.hamilton.visualizer;
 
 import javafx.animation.AnimationTimer;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -22,7 +25,12 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     public static double SIZE_FACTOR = 96;
+    public static long MAX_SOLVE_DELAY = 300;
     public static long SOLVE_DELAY = 100;
+    public static long MIN_SOLVE_DELAY = 0;
+
+    @FXML
+    public Slider delaySlider;
     @FXML
     private Canvas canvas;
     @FXML
@@ -41,6 +49,17 @@ public class Controller implements Initializable {
 
         loadGraph("graph44c");
         gc = canvas.getGraphicsContext2D();
+
+        delaySlider.setMax(MAX_SOLVE_DELAY);
+        delaySlider.setValue(SOLVE_DELAY);
+        delaySlider.setMin(MIN_SOLVE_DELAY);
+        delaySlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                SOLVE_DELAY = newValue.longValue();
+            }
+        });
+
         new AnimationTimer() {
             @Override
             public void handle(long now) {

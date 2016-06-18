@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="de.wegenerd.hamilton.visualizer.Controller"
-            fx:id="anchorPane">
-    <StackPane fx:id="stackPane" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-               AnchorPane.rightAnchor="0.0">
-        <children>
-            <Canvas fx:id="canvas"/>
-        </children>
-    </StackPane>
+<AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.wegenerd.hamilton.visualizer.Controller">
+   <children>
+       <StackPane fx:id="stackPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+           <children>
+               <Canvas fx:id="canvas" />
+            <Slider orientation="VERTICAL" StackPane.alignment="TOP_LEFT" fx:id="delaySlider" />
+           </children>
+       </StackPane>
+   </children>
 </AnchorPane>
