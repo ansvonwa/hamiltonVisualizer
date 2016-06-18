@@ -2,6 +2,7 @@ package de.wegenerd.hamilton.visualizer;
 
 import javafx.scene.canvas.GraphicsContext;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Node {
@@ -9,6 +10,7 @@ public class Node {
     private static double WIDTH = 10;
     private int id;
     private static HashMap<Integer, Node> nodeMap = new HashMap<>();
+    private static ArrayList<Node> nodeList = new ArrayList<>();
 
     private Node(int id) {
         this.id = id;
@@ -19,6 +21,7 @@ public class Node {
         if (node == null) {
             node = new Node(id);
             nodeMap.put(id, node);
+            nodeList.add(node);
         }
         return node;
     }
@@ -45,5 +48,9 @@ public class Node {
 
     public double getWidth() {
         return Node.WIDTH;
+    }
+
+    public static ArrayList<Node> getAll() {
+        return nodeList;
     }
 }

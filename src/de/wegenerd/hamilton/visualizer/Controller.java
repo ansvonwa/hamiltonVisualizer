@@ -29,14 +29,12 @@ public class Controller implements Initializable {
     private StackPane stackPane;
 
     private GraphicsContext gc;
-    private ArrayList<Node> nodes;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         canvas.widthProperty().bind(stackPane.widthProperty());
         canvas.heightProperty().bind(stackPane.heightProperty());
 
-        nodes = new ArrayList<Node>();
         loadGraph("graph04a.txt");
         gc = canvas.getGraphicsContext2D();
         new AnimationTimer() {
@@ -67,9 +65,13 @@ public class Controller implements Initializable {
         if (lines == null) {
             return;
         }
-        String line = lines.remove(0);
-        Node startNode = Node.create(line.split(" ")[0]);
-        Node endNode = Node.create(line.split(" ")[1]);
+        String firstLine = lines.remove(0);
+        Node startNode = Node.create(firstLine.split(" ")[0]);
+        Node endNode = Node.create(firstLine.split(" ")[1]);
+        for (String line : lines) {
+            System.out.println(line);
+        }
+
     }
 
     private double getWidth() {
@@ -84,7 +86,7 @@ public class Controller implements Initializable {
         gc.setStroke(Color.BLACK);
         gc.setFill(Color.BLACK);
         gc.clearRect(0, 0, getWidth(), getHeight());
-        for (Node node : nodes) {
+        for (Node node : Node.getAll()) {
             node.draw(gc);
         }
 
