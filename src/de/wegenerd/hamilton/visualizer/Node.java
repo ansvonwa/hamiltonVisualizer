@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Node {
-    private static double HEIGHT = 50;
-    private static double WIDTH = 50;
-    private static double SIZE_FACTOR = 96;
+    private static double HEIGHT = Controller.SIZE_FACTOR * 0.5;
+    private static double WIDTH = Controller.SIZE_FACTOR * 0.5;
     private int id;
     private static HashMap<Integer, Node> nodeMap = new HashMap<>();
     private static ArrayList<Node> nodeList = new ArrayList<>();
@@ -50,11 +49,11 @@ public class Node {
     }
 
     public double getX() {
-        return x * SIZE_FACTOR;
+        return x * Controller.SIZE_FACTOR;
     }
 
     public double getY() {
-        return y * SIZE_FACTOR;
+        return y * Controller.SIZE_FACTOR;
     }
 
     public void draw(GraphicsContext gc) {

@@ -15,11 +15,13 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
 
 public class Controller implements Initializable {
+    public static double SIZE_FACTOR = 96;
     @FXML
     private Canvas canvas;
     @FXML
@@ -35,7 +37,7 @@ public class Controller implements Initializable {
         canvas.widthProperty().bind(stackPane.widthProperty());
         canvas.heightProperty().bind(stackPane.heightProperty());
 
-        loadGraph("graph44b");
+        loadGraph("graph52d");
         gc = canvas.getGraphicsContext2D();
         new AnimationTimer() {
             @Override
@@ -89,6 +91,10 @@ public class Controller implements Initializable {
                     continue;
                 }
                 Edge edge = from.connectTo(to);
+                ArrayList<String> dataList = new ArrayList<>(Arrays.asList(data));
+                int n = new Integer(data[3]);
+                final List<String> edgeCoordinates = dataList.subList(4, n * 2);
+                edge.setCoordinates(edgeCoordinates);
             }
         }
 

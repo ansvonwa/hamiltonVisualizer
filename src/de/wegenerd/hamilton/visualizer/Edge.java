@@ -4,11 +4,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Edge {
     private Node from;
     private Node to;
     private static ArrayList<Edge> edgeList = new ArrayList<>();
+    private List<Double> coordinates;
 
     public Edge(Node from, Node to) {
         this.from = from;
@@ -27,5 +29,31 @@ public class Edge {
         double x2 = to.getX() + to.getWidth() / 2;
         double y2 = to.getY() + to.getHeight() / 2;
         gc.strokeLine(x1, y1, x2, y2);
+//        Double[] x = {null, null};
+//        Double[] y = {null, null};
+//        int i = 0;
+//        int xy = 0;
+//        for (Double coordinate : coordinates) {
+//            if (xy == 0) {
+//                x[i] = coordinate;
+//                xy = 1;
+//            } else {
+//                y[i] = coordinate;
+//                xy = 0;
+//                i++;
+//                i %= 2;
+//                if (y[1] != null) {
+//                    gc.strokeLine(x[0], y[0], x[1], y[1]);
+//                }
+//            }
+//        }
+    }
+
+    public void setCoordinates(List<String> coordinates) {
+        this.coordinates = new ArrayList<>();
+        for (String coordinate : coordinates) {
+            // TODO: something is wrong here with the scaling
+            this.coordinates.add(new Double(coordinate) * Controller.SIZE_FACTOR);
+        }
     }
 }
