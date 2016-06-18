@@ -13,6 +13,7 @@ public class Node {
     private static double HEIGHT = Controller.SIZE_FACTOR * 0.5;
     private static double WIDTH = Controller.SIZE_FACTOR * 0.5;
     private static ArrayList<Node> highlightedNodes = new ArrayList<>();
+    private static Controller controller;
     private int id;
     private static HashMap<Integer, Node> nodeMap = new HashMap<>();
     private static ArrayList<Node> nodeList = new ArrayList<>();
@@ -27,7 +28,8 @@ public class Node {
         this.id = id;
     }
 
-    public static Node create(int id, double x, double y) {
+    public static Node create(int id, double x, double y, Controller controller) {
+        Node.controller = controller;
         Node node = nodeMap.get(id);
         if (node == null) {
             node = new Node(id);
@@ -39,6 +41,14 @@ public class Node {
         return node;
     }
 
+    public static void resetHighlighting() {
+        highlightedNodes = new ArrayList<>();
+        for (Node node : nodeList) {
+            node.setHighlight(false);
+        }
+
+    }
+
     public static Node get(int id) {
         return nodeMap.get(id);
     }
@@ -47,8 +57,8 @@ public class Node {
         return Node.get(new Integer(id));
     }
 
-    public static Node create(String id, String x, String y) {
-        return Node.create(new Integer(id), new Double(x), new Double(y));
+    public static Node create(String id, String x, String y, Controller controller) {
+        return Node.create(new Integer(id), new Double(x), new Double(y), controller);
     }
 
     public double getX() {
@@ -189,7 +199,7 @@ public class Node {
             highlightedNodes.remove(this);
         }
         try {
-            Thread.sleep(Controller.SOLVE_DELAY);
+            Thread.sleep(controller.getSolveDelay());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

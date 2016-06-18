@@ -23,6 +23,12 @@ public class Edge {
         return edgeList;
     }
 
+    public static void resetHighlighting() {
+        for (Edge edge : edgeList) {
+            edge.setHighlight(false);
+        }
+    }
+
     public void draw(GraphicsContext gc) {
         if (isHighlight()) {
             gc.setStroke(Color.BLACK);

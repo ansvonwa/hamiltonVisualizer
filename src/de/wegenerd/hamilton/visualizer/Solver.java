@@ -9,6 +9,7 @@ import java.beans.PropertyChangeListener;
 public class Solver {
 
     private Algorithm algorithm;
+    private boolean isStopping;
 
     Solver(Algorithm algorithm) {
         this.algorithm = algorithm;
@@ -19,6 +20,7 @@ public class Solver {
     }
 
     public void stop() {
+        isStopping = true;
         algorithm.cancel();
     }
 
@@ -45,12 +47,19 @@ public class Solver {
                 return;
             }
         }
+//        Node.resetHighlighting();
+        Edge.resetHighlighting();
         algorithm.setStartNode(startNode);
         algorithm.setEndNode(endNode);
         algorithm.addPropertyChangeListener(callback);
+        isStopping = false;
         algorithm.start();
 //        else {
 //            System.err.println("Could not start new algorithm, is an old one still running?");
 //        }
+    }
+
+    public boolean isStopping() {
+        return isStopping;
     }
 }

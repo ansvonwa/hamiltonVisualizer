@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     public static double SIZE_FACTOR = 96;
     public static long MAX_SOLVE_DELAY = 300;
-    public static long SOLVE_DELAY = 100;
+    private long SOLVE_DELAY = 100;
     public static long MIN_SOLVE_DELAY = 0;
     private Solver currentSolver;
 
@@ -45,16 +45,23 @@ public class Controller implements Initializable {
 
     private GraphicsContext gc;
 
+    public long getSolveDelay() {
+        if (currentSolver != null && currentSolver.isStopping()) {
+            return 0;
+        }
+        return SOLVE_DELAY;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         canvas.widthProperty().bind(stackPane.widthProperty());
         canvas.heightProperty().bind(stackPane.heightProperty());
 
-        loadGraph("graph06a");
+        loadGraph("graph52a");
         gc = canvas.getGraphicsContext2D();
 
         delaySlider.setMax(MAX_SOLVE_DELAY);
-        delaySlider.setValue(SOLVE_DELAY);
+        delaySlider.setValue(getSolveDelay());
         delaySlider.setMin(MIN_SOLVE_DELAY);
         delaySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             SOLVE_DELAY = newValue.longValue();
@@ -103,7 +110,7 @@ public class Controller implements Initializable {
         for (String line : lines) {
             final String[] data = line.split(" ");
             if (data[0].equals("node")) {
-                Node node = Node.create(data[1], data[2], data[3]);
+                Node node = Node.create(data[1], data[2], data[3], this);
                 if (data[10].equals("green")) {
                     node.setStartNode(true);
                 } else if (data[10].equals("yellow")) {

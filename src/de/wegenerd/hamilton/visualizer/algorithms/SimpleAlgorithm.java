@@ -1,8 +1,6 @@
 package de.wegenerd.hamilton.visualizer.algorithms;
 
 import de.wegenerd.hamilton.visualizer.Node;
-import de.wegenerd.hamilton.visualizer.Solver;
-import javafx.beans.property.StringProperty;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
