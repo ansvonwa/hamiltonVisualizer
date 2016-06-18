@@ -19,6 +19,7 @@ public class Node {
     private double y;
     private boolean startNode;
     private boolean endNode;
+    private ArrayList<Edge> edges = new ArrayList<>();
 
     private Node(int id) {
         this.id = id;
@@ -58,9 +59,9 @@ public class Node {
 
     public void draw(GraphicsContext gc) {
         if (isStartNode()) {
-            gc.setFill(Color.GREEN);
+            gc.setFill(Color.LIGHTGREEN);
         } else if (isEndNode()) {
-            gc.setFill(Color.YELLOW);
+            gc.setFill(Color.LIGHTBLUE);
         } else {
             gc.setFill(Color.WHITESMOKE);
         }
@@ -117,6 +118,41 @@ public class Node {
     }
 
     public Edge connectTo(Node to) {
-        return new Edge(this, to);
+        Edge edge = new Edge(this, to);
+        edges.add(edge);
+        to.edges.add(edge);
+        return edge;
+    }
+
+    public static Node getStartNode() {
+        for (Node node : nodeList) {
+            if (node.isStartNode()) {
+                return node;
+            }
+        }
+        return null;
+    }
+
+    public static Node getEndNode() {
+        for (Node node : nodeList) {
+            if (node.isEndNode()) {
+                return node;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Node> getNeighbours() {
+        ArrayList<Node> result = new ArrayList<>();
+        for (Edge edge : edges) {
+            final Node from = edge.getFrom();
+            final Node to = edge.getTo();
+            if (from.equals(this)) {
+                result.add(to);
+            } else if (to.equals(this)) {
+                result.add(from);
+            }
+        }
+        return result;
     }
 }

@@ -31,13 +31,16 @@ public class Controller implements Initializable {
     private StackPane stackPane;
 
     private GraphicsContext gc;
+    private ArrayList<Node> visitedNodes = new ArrayList<>();
+    private Node startNode;
+    private Node endNode;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         canvas.widthProperty().bind(stackPane.widthProperty());
         canvas.heightProperty().bind(stackPane.heightProperty());
 
-        loadGraph("graph52d");
+        loadGraph("graph44c");
         gc = canvas.getGraphicsContext2D();
         new AnimationTimer() {
             @Override
@@ -45,6 +48,31 @@ public class Controller implements Initializable {
                 draw();
             }
         }.start();
+        startNode = Node.getStartNode();
+        visitedNodes.add(startNode);
+        endNode = Node.getEndNode();
+        long result = solve(startNode.getNeighbours());
+        System.out.println("Number of hamiltonian paths: " + result);
+    }
+
+    private long solve(ArrayList<Node> neighbours) {
+        long result = 0;
+        for (Node node : neighbours) {
+            if (visitedNodes.contains(node)) {
+                continue;
+            }
+            if (node.equals(endNode)) {
+                if (visitedNodes.size() + 1 == Node.getAll().size()) {
+                    return 1;
+                }
+                continue;
+            }
+            visitedNodes.add(node);
+            result += solve(node.getNeighbours());
+            visitedNodes.remove(node);
+        }
+        return result;
+
     }
 
     private void loadGraph(String graphName) {
@@ -71,9 +99,6 @@ public class Controller implements Initializable {
         if (lines == null) {
             return;
         }
-//        String firstLine = lines.remove(0);
-//        Node startNode = Node.create(firstLine.split(" ")[0]);
-//        Node endNode = Node.create(firstLine.split(" ")[1]);
         for (String line : lines) {
             final String[] data = line.split(" ");
             if (data[0].equals("node")) {

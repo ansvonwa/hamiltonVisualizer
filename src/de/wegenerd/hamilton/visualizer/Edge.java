@@ -56,4 +56,12 @@ public class Edge {
             this.coordinates.add(new Double(coordinate) * Controller.SIZE_FACTOR);
         }
     }
+
+    public Node getFrom() {
+        return from;
+    }
+
+    public Node getTo() {
+        return to;
+    }
 }
