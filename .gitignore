@@ -2,3 +2,7 @@
 out/
 .idea
 *.iml
+
+src/de/wegenerd/hamilton/visualizer/graphs/dot/
+src/de/wegenerd/hamilton/visualizer/graphs/png/
+src/de/wegenerd/hamilton/visualizer/graphs/svg/

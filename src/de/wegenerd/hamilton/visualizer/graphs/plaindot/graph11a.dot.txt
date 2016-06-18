@@ -1,0 +1,28 @@
+graph 1 2.5556 2.7778
+node 0 0.25 2.5278 0.5 0.5 0 solid circle black lightgrey
+node 1 0.25 1.7778 0.5 0.5 1 solid circle black lightgrey
+node 3 1.25 2.5278 0.5 0.5 3 solid circle black lightgrey
+node 2 0.25 1.0278 0.5 0.5 2 filled circle black yellow
+node 4 1.25 1.7778 0.5 0.5 4 solid circle black lightgrey
+node 5 1.25 1.0278 0.5 0.5 5 solid circle black lightgrey
+node 7 2.2778 2.5278 0.5 0.5 7 filled circle black green
+node 6 1.25 0.26389 0.5 0.5 6 solid circle black lightgrey
+node 8 2.2778 1.7778 0.5 0.5 8 solid circle black lightgrey
+node 9 2.2778 1.0278 0.5 0.5 9 solid circle black lightgrey
+node 10 2.2778 0.26389 0.54162 0.54162 10 solid circle black lightgrey
+edge 0 1 4 0.25 2.2749 0.25 2.1932 0.25 2.1114 0.25 2.0297 solid black
+edge 0 3 4 0.50421 2.5278 0.65491 2.5278 0.84838 2.5278 0.99855 2.5278 solid black
+edge 1 2 4 0.25 1.5249 0.25 1.4432 0.25 1.3614 0.25 1.2797 solid black
+edge 1 4 4 0.50421 1.7778 0.65491 1.7778 0.84838 1.7778 0.99855 1.7778 solid black
+edge 3 4 4 1.25 2.2749 1.25 2.1932 1.25 2.1114 1.25 2.0297 solid black
+edge 3 7 4 1.5009 2.5278 1.658 2.5278 1.8635 2.5278 2.0217 2.5278 solid black
+edge 2 5 4 0.50421 1.0278 0.65491 1.0278 0.84838 1.0278 0.99855 1.0278 solid black
+edge 4 5 4 1.25 1.5249 1.25 1.4432 1.25 1.3614 1.25 1.2797 solid black
+edge 4 8 4 1.5009 1.7778 1.658 1.7778 1.8635 1.7778 2.0217 1.7778 solid black
+edge 5 6 4 1.25 0.77517 1.25 0.68829 1.25 0.60142 1.25 0.51454 solid black
+edge 5 9 4 1.5009 1.0278 1.658 1.0278 1.8635 1.0278 2.0217 1.0278 solid black
+edge 7 8 4 2.2778 2.2749 2.2778 2.1932 2.2778 2.1114 2.2778 2.0297 solid black
+edge 6 10 4 1.5009 0.26389 1.6522 0.26389 1.8485 0.26389 2.004 0.26389 solid black
+edge 8 9 4 2.2778 1.5249 2.2778 1.4432 2.2778 1.3614 2.2778 1.2797 solid black
+edge 9 10 4 2.2778 0.77624 2.2778 0.69498 2.2778 0.61371 2.2778 0.53244 solid black
+stop

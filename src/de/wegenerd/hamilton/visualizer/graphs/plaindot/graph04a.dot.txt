@@ -1,0 +1,10 @@
+graph 1 1.5 2
+node 0 0.25 1.75 0.5 0.5 0 solid circle black lightgrey
+node 1 0.25 1 0.5 0.5 1 solid circle black lightgrey
+node 3 1.25 1 0.5 0.5 3 filled circle black green
+node 2 0.25 0.25 0.5 0.5 2 filled circle black yellow
+edge 0 1 4 0.25 1.4971 0.25 1.4154 0.25 1.3337 0.25 1.252 solid black
+edge 0 3 4 0.45597 1.6018 0.62641 1.4703 0.87411 1.2793 1.0444 1.1479 solid black
+edge 1 2 4 0.25 0.74709 0.25 0.66537 0.25 0.58366 0.25 0.50195 solid black
+edge 2 3 4 0.45597 0.39818 0.62641 0.52966 0.87411 0.72074 1.0444 0.85213 solid black
+stop
