@@ -1,8 +1,11 @@
-package de.wegenerd.hamilton.visualizer;
+package de.wegenerd.hamilton.visualizer.solvers;
 
+import de.wegenerd.hamilton.visualizer.Node;
+
+import java.math.BigInteger;
 import java.util.ArrayList;
 
-public class Solver extends Thread {
+public class SimpleSolver extends Solver {
 
     private Node endNode;
     private Node startNode;
@@ -13,12 +16,12 @@ public class Solver extends Thread {
         visitedNodes = new ArrayList<>();
         startNode.setHighlight(true);
         visitedNodes.add(startNode);
-        long result = solve(startNode.getNeighbours());
-        System.out.println("Number of hamiltonian paths: " + result);
+        BigInteger result = solve(startNode.getNeighbours());
+        publishResult(result);
     }
 
-    private long solve(ArrayList<Node> neighbours) {
-        long result = 0;
+    private BigInteger solve(ArrayList<Node> neighbours) {
+        BigInteger result = BigInteger.ZERO;
         for (Node node : neighbours) {
             if (visitedNodes.contains(node)) {
                 continue;
@@ -27,13 +30,13 @@ public class Solver extends Thread {
                 node.setHighlight(true);
                 node.setHighlight(false);
                 if (visitedNodes.size() + 1 == Node.getAll().size()) {
-                    return 1;
+                    return BigInteger.ONE;
                 }
                 continue;
             }
             visitedNodes.add(node);
             node.setHighlight(true);
-            result += solve(node.getNeighbours());
+            result = result.add(solve(node.getNeighbours()));
             node.setHighlight(false);
             visitedNodes.remove(node);
         }

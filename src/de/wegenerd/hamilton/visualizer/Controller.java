@@ -1,17 +1,18 @@
 package de.wegenerd.hamilton.visualizer;
 
+import de.wegenerd.hamilton.visualizer.solvers.SimpleSolver;
+import de.wegenerd.hamilton.visualizer.solvers.Solver;
 import javafx.animation.AnimationTimer;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -44,7 +45,7 @@ public class Controller implements Initializable {
         canvas.widthProperty().bind(stackPane.widthProperty());
         canvas.heightProperty().bind(stackPane.heightProperty());
 
-        loadGraph("graph44c");
+        loadGraph("graph06a");
         gc = canvas.getGraphicsContext2D();
 
         delaySlider.setMax(MAX_SOLVE_DELAY);
@@ -62,9 +63,13 @@ public class Controller implements Initializable {
         }.start();
         Node startNode = Node.getStartNode();
         Node endNode = Node.getEndNode();
-        Solver solver = new Solver();
+        Solver solver = new SimpleSolver();
         solver.setStartNode(startNode);
         solver.setEndNode(endNode);
+        solver.addPropertyChangeListener(evt -> {
+            System.out.println(evt.getPropertyName());
+            System.out.println("Number of hamiltonian paths: " + evt.getNewValue());
+        });
         solver.start();
     }
 
