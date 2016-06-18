@@ -158,6 +158,9 @@ public class Controller implements Initializable {
         graphName.setCellValueFactory(new PropertyValueFactory("graphName"));
         graphName.setPrefWidth(200);
         graphTable.getColumns().addAll(graphName);
+
+        graphTable.getSelectionModel().selectFirst();
+        algorithmTable.getSelectionModel().selectFirst();
     }
 
     private void loadGraph(GraphFile graphFile) {
