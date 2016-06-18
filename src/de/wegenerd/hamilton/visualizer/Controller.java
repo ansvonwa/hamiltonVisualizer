@@ -2,7 +2,8 @@ package de.wegenerd.hamilton.visualizer;
 
 import de.wegenerd.hamilton.visualizer.algorithms.SimpleAlgorithm;
 import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 import java.io.File;
@@ -54,6 +56,7 @@ public class Controller implements Initializable {
     private GraphicsContext gc;
     private BigInteger result;
     private BigInteger steps;
+    private double sizeFactor;
 
     public long getSolveDelay() {
         if (currentSolver != null && currentSolver.isStopping()) {
@@ -67,6 +70,12 @@ public class Controller implements Initializable {
         canvas.widthProperty().bind(stackPane.widthProperty());
         canvas.heightProperty().bind(stackPane.heightProperty());
 
+        canvas.widthProperty().addListener((observable, oldValue, newValue) -> {
+            updateSizeFactor();
+        });
+        canvas.heightProperty().addListener((observable, oldValue, newValue) -> {
+            updateSizeFactor();
+        });
         gc = canvas.getGraphicsContext2D();
 
         delaySlider.setMax(MAX_SOLVE_DELAY);
@@ -92,6 +101,25 @@ public class Controller implements Initializable {
                 draw();
             }
         }.start();
+    }
+
+    private void updateSizeFactor() {
+        double maxX = 0;
+        double maxY = 0;
+        sizeFactor = 1;
+        for (Node node : Node.getAll()) {
+            maxX = Math.max(node.getX(), maxX);
+            maxY = Math.max(node.getY(), maxY);
+        }
+        double w = canvas.getWidth();
+        double h = canvas.getHeight();
+        double bottomPadding = 60;
+        double rightPadding = 230;
+        sizeFactor = Math.min(
+                -2 * (rightPadding - w) / (2 * maxX + 1),
+                -2 * (bottomPadding - h) / (2 * maxY + 1)
+        );
+
     }
 
     private void loadGraphFileList() {
@@ -171,7 +199,7 @@ public class Controller implements Initializable {
                 edge.setCoordinates(edgeCoordinates);
             }
         }
-
+        updateSizeFactor();
     }
 
     private double getWidth() {
@@ -192,6 +220,7 @@ public class Controller implements Initializable {
         for (Node node : Node.getAll()) {
             node.draw(gc);
         }
+        gc.setFont(Font.font(18));
         gc.setTextAlign(TextAlignment.LEFT);
         gc.setTextBaseline(VPos.BOTTOM);
         gc.setFill(Color.BLACK);
@@ -253,5 +282,9 @@ public class Controller implements Initializable {
 
     public void addResult() {
         setResult(getResult().add(BigInteger.ONE));
+    }
+
+    public double getSizeFactor() {
+        return sizeFactor;
     }
 }

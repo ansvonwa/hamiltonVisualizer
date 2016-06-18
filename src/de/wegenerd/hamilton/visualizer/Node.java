@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Node {
-    private static double HEIGHT = Controller.SIZE_FACTOR * 0.5;
-    private static double WIDTH = Controller.SIZE_FACTOR * 0.5;
     private static ArrayList<Node> highlightedNodes = new ArrayList<>();
     private static Controller controller;
     private int id;
@@ -68,11 +66,11 @@ public class Node {
     }
 
     public double getX() {
-        return x * Controller.SIZE_FACTOR;
+        return x * controller.getSizeFactor();
     }
 
     public double getY() {
-        return y * Controller.SIZE_FACTOR;
+        return y * controller.getSizeFactor();
     }
 
     public void draw(GraphicsContext gc) {
@@ -95,18 +93,18 @@ public class Node {
         gc.fillOval(getX(), getY(), getWidth(), getHeight());
         gc.strokeOval(getX(), getY(), getWidth(), getHeight());
         gc.setFill(Color.BLACK);
-        gc.setFont(Font.font(18));
+        gc.setFont(Font.font(controller.getSizeFactor() * 0.2));
         gc.setTextAlign(TextAlignment.CENTER);
         gc.setTextBaseline(VPos.CENTER);
         gc.fillText(Integer.toString(id), getX() + getWidth() / 2, getY() + getHeight() / 2);
     }
 
     public double getHeight() {
-        return Node.HEIGHT;
+        return controller.getSizeFactor() * 0.5;
     }
 
     public double getWidth() {
-        return Node.WIDTH;
+        return controller.getSizeFactor() * 0.5;
     }
 
     public static ArrayList<Node> getAll() {
