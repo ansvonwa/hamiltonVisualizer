@@ -35,7 +35,7 @@ public class Controller implements Initializable {
         canvas.widthProperty().bind(stackPane.widthProperty());
         canvas.heightProperty().bind(stackPane.heightProperty());
 
-        loadGraph("graph04a.txt");
+        loadGraph("graph44b");
         gc = canvas.getGraphicsContext2D();
         new AnimationTimer() {
             @Override
@@ -45,8 +45,12 @@ public class Controller implements Initializable {
         }.start();
     }
 
-    private void loadGraph(String filename) {
-        URL graphUrl = getClass().getResource("./graphs/" + filename);
+    private void loadGraph(String graphName) {
+        URL graphUrl = getClass().getResource("./graphs/plaindot/" + graphName + ".dot.txt");
+        if (graphUrl == null) {
+            System.err.println("No such graph '" + graphName + "'");
+            return;
+        }
         File graphFile = null;
         try {
             graphFile = new File(graphUrl.toURI());
@@ -65,11 +69,19 @@ public class Controller implements Initializable {
         if (lines == null) {
             return;
         }
-        String firstLine = lines.remove(0);
-        Node startNode = Node.create(firstLine.split(" ")[0]);
-        Node endNode = Node.create(firstLine.split(" ")[1]);
+//        String firstLine = lines.remove(0);
+//        Node startNode = Node.create(firstLine.split(" ")[0]);
+//        Node endNode = Node.create(firstLine.split(" ")[1]);
         for (String line : lines) {
-            System.out.println(line);
+            final String[] data = line.split(" ");
+            if (data[0].equals("node")) {
+                Node node = Node.create(data[1], data[2], data[3]);
+                if (data[10].equals("green")) {
+                    node.setStartNode(true);
+                } else if (data[10].equals("yellow")) {
+                    node.setEndNode(true);
+                }
+            }
         }
 
     }
