@@ -33,14 +33,11 @@ public class Controller implements Initializable {
     public Slider delaySlider;
     @FXML
     private Canvas canvas;
-    @FXML
-    private AnchorPane anchorPane;
 
     @FXML
     private StackPane stackPane;
 
     private GraphicsContext gc;
-    private ArrayList<Node> visitedNodes = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,11 +50,8 @@ public class Controller implements Initializable {
         delaySlider.setMax(MAX_SOLVE_DELAY);
         delaySlider.setValue(SOLVE_DELAY);
         delaySlider.setMin(MIN_SOLVE_DELAY);
-        delaySlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                SOLVE_DELAY = newValue.longValue();
-            }
+        delaySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            SOLVE_DELAY = newValue.longValue();
         });
 
         new AnimationTimer() {
