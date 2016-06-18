@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class Node {
     private static double HEIGHT = Controller.SIZE_FACTOR * 0.5;
     private static double WIDTH = Controller.SIZE_FACTOR * 0.5;
+    private static ArrayList<Node> highlightedNodes = new ArrayList<>();
     private int id;
     private static HashMap<Integer, Node> nodeMap = new HashMap<>();
     private static ArrayList<Node> nodeList = new ArrayList<>();
@@ -20,6 +21,7 @@ public class Node {
     private boolean startNode;
     private boolean endNode;
     private ArrayList<Edge> edges = new ArrayList<>();
+    private boolean highlight;
 
     private Node(int id) {
         this.id = id;
@@ -58,10 +60,14 @@ public class Node {
     }
 
     public void draw(GraphicsContext gc) {
+        gc.setLineWidth(1);
         if (isStartNode()) {
             gc.setFill(Color.LIGHTGREEN);
         } else if (isEndNode()) {
             gc.setFill(Color.LIGHTBLUE);
+        } else if (isHighlight()) {
+            gc.setFill(Color.ORANGE);
+            gc.setLineWidth(2);
         } else {
             gc.setFill(Color.WHITESMOKE);
         }
@@ -154,5 +160,38 @@ public class Node {
             }
         }
         return result;
+    }
+
+    public void setHighlight(boolean highlight) {
+        this.highlight = highlight;
+        Node lastHighlightedNode = null;
+        if (highlightedNodes.size() > 0) {
+            lastHighlightedNode = highlightedNodes.get(highlightedNodes.size() - 1);
+        }
+        if (highlight) {
+            for (Edge edge : edges) {
+                final Node from = edge.getFrom();
+                final Node to = edge.getTo();
+                if (from.equals(this) && to.equals(lastHighlightedNode) ||
+                        to.equals(this) && from.equals(lastHighlightedNode)) {
+                    edge.setHighlight(true);
+                }
+            }
+            highlightedNodes.add(this);
+        } else {
+            for (Edge edge : edges) {
+                edge.setHighlight(false);
+            }
+            highlightedNodes.remove(this);
+        }
+        try {
+            Thread.sleep(Controller.SOLVE_DELAY);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isHighlight() {
+        return highlight;
     }
 }

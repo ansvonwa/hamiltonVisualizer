@@ -9,6 +9,7 @@ import java.util.List;
 public class Edge {
     private Node from;
     private Node to;
+    private boolean highlight;
     private static ArrayList<Edge> edgeList = new ArrayList<>();
     private List<Double> coordinates;
 
@@ -23,7 +24,13 @@ public class Edge {
     }
 
     public void draw(GraphicsContext gc) {
-        gc.setStroke(Color.BLACK);
+        if (isHighlight()) {
+            gc.setStroke(Color.BLACK);
+            gc.setLineWidth(3);
+        } else {
+            gc.setStroke(Color.DARKGREY);
+            gc.setLineWidth(1);
+        }
         double x1 = from.getX() + from.getWidth() / 2;
         double y1 = from.getY() + from.getHeight() / 2;
         double x2 = to.getX() + to.getWidth() / 2;
@@ -63,5 +70,13 @@ public class Edge {
 
     public Node getTo() {
         return to;
+    }
+
+    public boolean isHighlight() {
+        return highlight;
+    }
+
+    public void setHighlight(boolean highlight) {
+        this.highlight = highlight;
     }
 }

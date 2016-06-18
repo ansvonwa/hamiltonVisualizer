@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     public static double SIZE_FACTOR = 96;
+    public static long SOLVE_DELAY = 100;
     @FXML
     private Canvas canvas;
     @FXML
@@ -32,8 +33,6 @@ public class Controller implements Initializable {
 
     private GraphicsContext gc;
     private ArrayList<Node> visitedNodes = new ArrayList<>();
-    private Node startNode;
-    private Node endNode;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,31 +47,12 @@ public class Controller implements Initializable {
                 draw();
             }
         }.start();
-        startNode = Node.getStartNode();
-        visitedNodes.add(startNode);
-        endNode = Node.getEndNode();
-        long result = solve(startNode.getNeighbours());
-        System.out.println("Number of hamiltonian paths: " + result);
-    }
-
-    private long solve(ArrayList<Node> neighbours) {
-        long result = 0;
-        for (Node node : neighbours) {
-            if (visitedNodes.contains(node)) {
-                continue;
-            }
-            if (node.equals(endNode)) {
-                if (visitedNodes.size() + 1 == Node.getAll().size()) {
-                    return 1;
-                }
-                continue;
-            }
-            visitedNodes.add(node);
-            result += solve(node.getNeighbours());
-            visitedNodes.remove(node);
-        }
-        return result;
-
+        Node startNode = Node.getStartNode();
+        Node endNode = Node.getEndNode();
+        Solver solver = new Solver();
+        solver.setStartNode(startNode);
+        solver.setEndNode(endNode);
+        solver.start();
     }
 
     private void loadGraph(String graphName) {
