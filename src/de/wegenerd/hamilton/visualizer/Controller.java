@@ -191,9 +191,7 @@ public class Controller implements Initializable {
         if (solver == null) {
             return;
         }
-        if (currentSolver != null) {
-            currentSolver.stop();
-        }
+        stopAlgorithm();
         Node startNode = Node.getStartNode();
         Node endNode = Node.getEndNode();
         if (currentSolver != null) {
@@ -209,5 +207,11 @@ public class Controller implements Initializable {
         solver.start(startNode, endNode, evt -> {
             System.out.println("Number of hamiltonian paths: " + evt.getNewValue());
         });
+    }
+
+    public void stopAlgorithm() {
+        if (currentSolver != null) {
+            currentSolver.stop();
+        }
     }
 }
