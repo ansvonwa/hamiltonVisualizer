@@ -11,7 +11,11 @@
        <StackPane fx:id="stackPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
            <children>
                <Canvas fx:id="canvas" height="768.0" width="1024.0" />
-            <Slider fx:id="delaySlider" orientation="VERTICAL" StackPane.alignment="TOP_LEFT" />
+            <Slider fx:id="delaySlider" orientation="VERTICAL" StackPane.alignment="TOP_RIGHT">
+               <StackPane.margin>
+                  <Insets right="200.0" />
+               </StackPane.margin>
+            </Slider>
            </children>
        </StackPane>
       <VBox alignment="CENTER_RIGHT" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
