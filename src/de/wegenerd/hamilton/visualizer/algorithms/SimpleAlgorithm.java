@@ -1,16 +1,15 @@
-package de.wegenerd.hamilton.visualizer.solvers;
+package de.wegenerd.hamilton.visualizer.algorithms;
 
 import de.wegenerd.hamilton.visualizer.Node;
+import de.wegenerd.hamilton.visualizer.Solver;
+import javafx.beans.property.StringProperty;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-public class SimpleSolver extends Solver {
+public class SimpleAlgorithm extends Algorithm {
 
-    private Node endNode;
-    private Node startNode;
     private ArrayList<Node> visitedNodes;
-    private int delay;
 
     public void run() {
         visitedNodes = new ArrayList<>();
@@ -22,6 +21,9 @@ public class SimpleSolver extends Solver {
 
     private BigInteger solve(ArrayList<Node> neighbours) {
         BigInteger result = BigInteger.ZERO;
+        if (cancel) {
+            return result;
+        }
         for (Node node : neighbours) {
             if (visitedNodes.contains(node)) {
                 continue;
@@ -44,15 +46,8 @@ public class SimpleSolver extends Solver {
 
     }
 
-    public void setEndNode(Node endNode) {
-        this.endNode = endNode;
-    }
-
-    public void setStartNode(Node startNode) {
-        this.startNode = startNode;
-    }
-
-    public void setDelay(int delay) {
-        this.delay = delay;
+    @Override
+    public String getAlgorithmName() {
+        return "Simple brute force";
     }
 }

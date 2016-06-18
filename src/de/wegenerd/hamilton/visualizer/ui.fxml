@@ -10,8 +10,10 @@
        <StackPane fx:id="stackPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
            <children>
                <Canvas fx:id="canvas" />
-            <Slider orientation="VERTICAL" StackPane.alignment="TOP_LEFT" fx:id="delaySlider" />
+            <Slider fx:id="delaySlider" orientation="VERTICAL" StackPane.alignment="TOP_LEFT" />
            </children>
        </StackPane>
+      <TableView fx:id="algorithmTable" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button mnemonicParsing="false" onAction="#runAlgorithm" text="Run Algorithm" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>
