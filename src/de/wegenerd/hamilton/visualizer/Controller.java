@@ -2,23 +2,24 @@ package de.wegenerd.hamilton.visualizer;
 
 import de.wegenerd.hamilton.visualizer.algorithms.SimpleAlgorithm;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -36,6 +37,10 @@ public class Controller implements Initializable {
     private Solver currentSolver;
 
     @FXML
+    public Label resultLabel;
+    @FXML
+    public Label stepsLabel;
+    @FXML
     public Slider delaySlider;
     @FXML
     private Canvas canvas;
@@ -47,6 +52,8 @@ public class Controller implements Initializable {
     public TableView graphTable;
 
     private GraphicsContext gc;
+    private BigInteger result;
+    private BigInteger steps;
 
     public long getSolveDelay() {
         if (currentSolver != null && currentSolver.isStopping()) {
@@ -185,6 +192,12 @@ public class Controller implements Initializable {
         for (Node node : Node.getAll()) {
             node.draw(gc);
         }
+        gc.setTextAlign(TextAlignment.LEFT);
+        gc.setTextBaseline(VPos.BOTTOM);
+        gc.setFill(Color.BLACK);
+        gc.setStroke(Color.BLACK);
+        gc.fillRect(10, canvas.getHeight(), 4, 10);
+        gc.fillText("Steps: " + getSteps() + "\nResult: " + getResult(), 10, canvas.getHeight());
     }
 
     public void runAlgorithm(ActionEvent event) {
@@ -205,8 +218,10 @@ public class Controller implements Initializable {
             }
         }
         currentSolver = solver;
+        setResult(BigInteger.ZERO);
+        setSteps(BigInteger.ZERO);
         solver.start(startNode, endNode, evt -> {
-            System.out.println("Number of hamiltonian paths: " + evt.getNewValue());
+            result = (BigInteger) evt.getNewValue();
         });
     }
 
@@ -214,5 +229,29 @@ public class Controller implements Initializable {
         if (currentSolver != null) {
             currentSolver.stop();
         }
+    }
+
+    public BigInteger getResult() {
+        return result;
+    }
+
+    public void setResult(BigInteger result) {
+        this.result = result;
+    }
+
+    public void setSteps(BigInteger steps) {
+        this.steps = steps;
+    }
+
+    public void addStep() {
+        setSteps(getSteps().add(BigInteger.ONE));
+    }
+
+    public BigInteger getSteps() {
+        return steps;
+    }
+
+    public void addResult() {
+        setResult(getResult().add(BigInteger.ONE));
     }
 }

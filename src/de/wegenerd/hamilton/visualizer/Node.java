@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -183,6 +184,9 @@ public class Node {
 
     public void setHighlight(boolean highlight) {
         this.highlight = highlight;
+        if (highlight) {
+            controller.addStep();
+        }
         Node lastHighlightedNode = null;
         if (highlightedNodes.size() > 0) {
             lastHighlightedNode = highlightedNodes.get(highlightedNodes.size() - 1);
@@ -197,6 +201,9 @@ public class Node {
                 }
             }
             highlightedNodes.add(this);
+            if (isEndNode() && Node.allHighlighted()) {
+                controller.addResult();
+            }
         } else {
             for (Edge edge : edges) {
                 edge.setHighlight(false);
@@ -208,6 +215,15 @@ public class Node {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private static boolean allHighlighted() {
+        for (Node node : nodeList) {
+            if (!node.isHighlight()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean isHighlight() {

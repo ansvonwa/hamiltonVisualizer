@@ -10,7 +10,11 @@
    <children>
        <StackPane fx:id="stackPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
            <children>
-               <Canvas fx:id="canvas" height="768.0" width="1024.0" />
+               <Canvas fx:id="canvas" height="768.0" width="1024.0" StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets right="230.0" />
+               </StackPane.margin>
+            </Canvas>
             <Slider fx:id="delaySlider" orientation="VERTICAL" StackPane.alignment="TOP_RIGHT">
                <StackPane.margin>
                   <Insets right="200.0" />
