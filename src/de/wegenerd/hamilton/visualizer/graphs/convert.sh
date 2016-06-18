@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir dot
 ./txt2dot.py
 mkdir svg
 mkdir png
