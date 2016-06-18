@@ -11,6 +11,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
@@ -42,6 +43,8 @@ public class Controller implements Initializable {
     private StackPane stackPane;
     @FXML
     private TableView<Solver> algorithmTable;
+    @FXML
+    public TableView graphTable;
 
     private GraphicsContext gc;
 
@@ -57,7 +60,6 @@ public class Controller implements Initializable {
         canvas.widthProperty().bind(stackPane.widthProperty());
         canvas.heightProperty().bind(stackPane.heightProperty());
 
-        loadGraph("graph52a");
         gc = canvas.getGraphicsContext2D();
 
         delaySlider.setMax(MAX_SOLVE_DELAY);
@@ -67,14 +69,16 @@ public class Controller implements Initializable {
             SOLVE_DELAY = newValue.longValue();
         });
 
-        ObservableList<Solver> data = FXCollections.observableArrayList(
+        ObservableList<Solver> algorithmData = FXCollections.observableArrayList(
                 new Solver(new SimpleAlgorithm())
         );
-        algorithmTable.setItems(data);
+        algorithmTable.setItems(algorithmData);
         TableColumn algorithmName = new TableColumn<Solver, String>("Algorithm");
         algorithmName.setCellValueFactory(new PropertyValueFactory("algorithmName"));
+        algorithmName.setPrefWidth(200);
         algorithmTable.getColumns().addAll(algorithmName);
 
+        loadGraphFileList();
         new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -83,30 +87,59 @@ public class Controller implements Initializable {
         }.start();
     }
 
-    private void loadGraph(String graphName) {
-        URL graphUrl = getClass().getResource("./graphs/plaindot/" + graphName + ".dot.txt");
-        if (graphUrl == null) {
-            System.err.println("No such graph '" + graphName + "'");
+    private void loadGraphFileList() {
+        graphTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                loadGraph((GraphFile) newValue);
+            }
+        });
+        ObservableList<GraphFile> graphData = FXCollections.observableArrayList();
+
+        URL graphFolderUrl = getClass().getResource("./graphs/plaindot/");
+        if (graphFolderUrl == null) {
+            System.err.println("Could not load graph files");
             return;
         }
-        File graphFile = null;
+        File folder = null;
         try {
-            graphFile = new File(graphUrl.toURI());
+            folder = new File(graphFolderUrl.toURI());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        if (graphFile == null) {
+        File[] listOfFiles = folder.listFiles();
+
+        if (listOfFiles == null) {
+            System.err.println("Could not load graph files");
+            return;
+        }
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                graphData.add(new GraphFile(file));
+            }
+        }
+        graphTable.setItems(graphData);
+        TableColumn graphName = new TableColumn<GraphFile, String>("Graph");
+        graphName.setCellValueFactory(new PropertyValueFactory("graphName"));
+        graphName.setPrefWidth(200);
+        graphTable.getColumns().addAll(graphName);
+    }
+
+    private void loadGraph(GraphFile graphFile) {
+        File file = graphFile.getFile();
+        if (file == null) {
             return;
         }
         List<String> lines = null;
         try {
-            lines = Files.readAllLines(graphFile.toPath());
+            lines = Files.readAllLines(file.toPath());
         } catch (IOException e) {
             e.printStackTrace();
         }
         if (lines == null) {
             return;
         }
+        Node.reset();
+        Edge.reset();
         for (String line : lines) {
             final String[] data = line.split(" ");
             if (data[0].equals("node")) {

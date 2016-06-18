@@ -61,6 +61,11 @@ public class Node {
         return Node.create(new Integer(id), new Double(x), new Double(y), controller);
     }
 
+    public static void reset() {
+        nodeList = new ArrayList<>();
+        nodeMap = new HashMap<>();
+    }
+
     public double getX() {
         return x * Controller.SIZE_FACTOR;
     }

@@ -29,6 +29,10 @@ public class Edge {
         }
     }
 
+    public static void reset() {
+        edgeList = new ArrayList<>();
+    }
+
     public void draw(GraphicsContext gc) {
         if (isHighlight()) {
             gc.setStroke(Color.BLACK);
