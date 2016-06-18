@@ -90,6 +90,7 @@ public class Controller implements Initializable {
     private void loadGraphFileList() {
         graphTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                stopAlgorithm();
                 loadGraph((GraphFile) newValue);
             }
         });
