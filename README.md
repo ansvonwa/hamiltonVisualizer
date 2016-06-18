@@ -12,3 +12,5 @@ To have a good layout of the graph, you need to execute the python script
 format. After that, you need graphviz to generate another text file,
 which then contains coordinates of the nodes. These coordinates help
 rendering the nodes to a nice grid.
+
+![Screenshot](screenshot.png "Screenshot")
