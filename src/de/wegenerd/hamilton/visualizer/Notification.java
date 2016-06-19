@@ -12,7 +12,7 @@ public class Notification {
     private NotificationType notificationType;
     private double height = 50;
     private double width = 800;
-    private double y = 25;
+    private double y = 0;
     private double x = 0;
     private Controller controller;
 
