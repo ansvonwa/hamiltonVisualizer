@@ -57,6 +57,8 @@ public class Controller implements Initializable {
     private BigInteger result;
     private BigInteger steps;
     private double sizeFactor;
+    private GraphFile currentGraph;
+    private Notification notification;
 
     public long getSolveDelay() {
         if (currentSolver != null && currentSolver.isStopping()) {
@@ -94,6 +96,7 @@ public class Controller implements Initializable {
         algorithmName.setPrefWidth(200);
         algorithmTable.getColumns().addAll(algorithmName);
 
+        notification = new Notification(this);
         loadGraphFileList();
         new AnimationTimer() {
             @Override
@@ -164,6 +167,7 @@ public class Controller implements Initializable {
     }
 
     private void loadGraph(GraphFile graphFile) {
+        notification.hide();
         File file = graphFile.getFile();
         if (file == null) {
             return;
@@ -202,6 +206,7 @@ public class Controller implements Initializable {
                 edge.setCoordinates(edgeCoordinates);
             }
         }
+        currentGraph = graphFile;
         updateSizeFactor();
     }
 
@@ -230,6 +235,7 @@ public class Controller implements Initializable {
         gc.setStroke(Color.BLACK);
         gc.fillRect(10, canvas.getHeight(), 4, 10);
         gc.fillText("Steps: " + getSteps() + "\nResult: " + getResult(), 10, canvas.getHeight());
+        notification.draw(gc);
     }
 
     public void runAlgorithm(ActionEvent event) {
@@ -252,8 +258,15 @@ public class Controller implements Initializable {
         currentSolver = solver;
         setResult(BigInteger.ZERO);
         setSteps(BigInteger.ZERO);
+        notification.hide();
         solver.start(startNode, endNode, evt -> {
             result = (BigInteger) evt.getNewValue();
+            BigInteger solution = currentGraph.getSolution();
+            if (result.equals(solution)) {
+                notification.show("Correct solution!", NotificationType.SUCCESS);
+            } else {
+                notification.show("Wrong solution! Expected " + solution, NotificationType.ERROR);
+            }
         });
     }
 
@@ -289,5 +302,9 @@ public class Controller implements Initializable {
 
     public double getSizeFactor() {
         return sizeFactor;
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
     }
 }
