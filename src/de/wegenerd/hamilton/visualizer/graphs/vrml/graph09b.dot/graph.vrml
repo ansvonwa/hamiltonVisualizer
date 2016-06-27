@@ -1,0 +1,607 @@
+#VRML V2.0 utf8
+Group { children [
+  Transform {
+    scale 0.028 0.028 0.028
+    children [
+ Background { skyColor 1.000 1.000 1.000 }
+# node 0
+Transform {
+  translation 40.592 180.000 0.000
+  scale 18.000 18.000 1
+  children [
+    Transform {
+      rotation 1 0 0   1.57
+      children [
+        Shape {
+          geometry Cylinder { side FALSE }
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0.33
+              diffuseColor 1 1 1
+            }
+            texture ImageTexture { url "node1.png" }
+          }
+        }
+      ]
+    }
+  ]
+}
+# node 1
+Transform {
+  translation 40.592 126.000 0.000
+  scale 18.000 18.000 1
+  children [
+    Transform {
+      rotation 1 0 0   1.57
+      children [
+        Shape {
+          geometry Cylinder { side FALSE }
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0.33
+              diffuseColor 1 1 1
+            }
+            texture ImageTexture { url "node2.png" }
+          }
+        }
+      ]
+    }
+  ]
+}
+# edge 0 -> 1
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 17.650 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 1.000 -3.142
+      translation 40.592 153.000 0.000
+    }
+] }
+# node 2
+Transform {
+  translation 40.592 72.000 0.000
+  scale 18.000 18.000 1
+  children [
+    Transform {
+      rotation 1 0 0   1.57
+      children [
+        Shape {
+          geometry Cylinder { side FALSE }
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0.33
+              diffuseColor 1 1 1
+            }
+            texture ImageTexture { url "node3.png" }
+          }
+        }
+      ]
+    }
+  ]
+}
+# edge 0 -> 2
+ Group { children [
+Shape { geometry Extrusion  {
+  spine [ 25.467 169.538 0.000 23.096 167.554 0.000 20.700 165.425 0.000 18.313 163.159 0.000 15.966 160.761 0.000 13.693 158.240 0.000 11.528 155.601 0.000 9.502 152.850 0.000 7.649 149.996 0.000 6.001 147.043 0.000 4.592 144.000 0.000 4.592 144.000 0.000 2.939 139.799 0.000 1.653 135.999 0.000 0.735 132.499 0.000 0.184 129.199 0.000 -0.000 126.000 0.000 0.184 122.801 0.000 0.735 119.501 0.000 1.653 116.001 0.000 2.939 112.201 0.000 4.592 108.000 0.000 4.592 108.000 0.000 6.001 104.957 0.000 7.649 102.004 0.000 9.502 99.150 0.000 11.528 96.399 0.000 13.693 93.760 0.000 15.966 91.239 0.000 18.313 88.841 0.000 20.700 86.575 0.000 23.096 84.446 0.000 25.467 82.462 0.000 ]
+  crossSection [ 1.000 1.000, -1.000 1.000, -1.000 -1.000, 1.000 -1.000 ]
+}
+ appearance DEF E2 Appearance {
+   material Material {
+   ambientIntensity 0.33
+   diffuseColor 0.000 0.000 0.000
+   }
+ }
+}
+] }
+# node 3
+Transform {
+  translation 112.592 72.000 0.000
+  scale 18.000 18.000 1
+  children [
+    Transform {
+      rotation 1 0 0   1.57
+      children [
+        Shape {
+          geometry Cylinder { side FALSE }
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0.33
+              diffuseColor 1 1 1
+            }
+            texture ImageTexture { url "node4.png" }
+          }
+        }
+      ]
+    }
+  ]
+}
+# edge 0 -> 3
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 93.035 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 -36.000 -3.730
+      translation 76.592 126.000 0.000
+    }
+] }
+# edge 1 -> 2
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 17.650 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 1.000 -3.142
+      translation 40.592 99.000 0.000
+    }
+] }
+# node 4
+Transform {
+  translation 112.592 180.000 0.000
+  scale 18.000 18.000 1
+  children [
+    Transform {
+      rotation 1 0 0   1.57
+      children [
+        Shape {
+          geometry Cylinder { side FALSE }
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0.33
+              diffuseColor 1 1 1
+            }
+            texture ImageTexture { url "node5.png" }
+          }
+        }
+      ]
+    }
+  ]
+}
+# edge 1 -> 4
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 53.499 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 36.000 -0.927
+      translation 76.592 153.000 0.000
+    }
+] }
+# node 5
+Transform {
+  translation 112.592 126.000 0.000
+  scale 18.000 18.000 1
+  children [
+    Transform {
+      rotation 1 0 0   1.57
+      children [
+        Shape {
+          geometry Cylinder { side FALSE }
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0.33
+              diffuseColor 1 1 1
+            }
+            texture ImageTexture { url "node6.png" }
+          }
+        }
+      ]
+    }
+  ]
+}
+# edge 1 -> 5
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 35.592 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 36.000 -1.571
+      translation 76.592 126.000 0.000
+    }
+] }
+# edge 2 -> 3
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 35.592 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 36.000 -1.571
+      translation 76.592 72.000 0.000
+    }
+] }
+# edge 2 -> 5
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 53.499 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 36.000 -0.927
+      translation 76.592 99.000 0.000
+    }
+] }
+# node 6
+Transform {
+  translation 112.592 18.000 0.000
+  scale 18.000 18.000 1
+  children [
+    Transform {
+      rotation 1 0 0   1.57
+      children [
+        Shape {
+          geometry Cylinder { side FALSE }
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0.33
+              diffuseColor 1 1 1
+            }
+            texture ImageTexture { url "node7.png" }
+          }
+        }
+      ]
+    }
+  ]
+}
+# edge 3 -> 6
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 17.650 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 1.000 -3.142
+      translation 112.592 45.000 0.000
+    }
+] }
+# node 7
+Transform {
+  translation 184.592 70.000 0.000
+  scale 18.000 18.000 1
+  children [
+    Transform {
+      rotation 1 0 0   1.57
+      children [
+        Shape {
+          geometry Cylinder { side FALSE }
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0.33
+              diffuseColor 1 1 1
+            }
+            texture ImageTexture { url "node8.png" }
+          }
+        }
+      ]
+    }
+  ]
+}
+# edge 3 -> 7
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 35.607 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 -36.000 -4.685
+      translation 148.592 71.000 0.000
+    }
+] }
+# edge 4 -> 5
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 17.650 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 1.000 -3.142
+      translation 112.592 153.000 0.000
+    }
+] }
+# node 8
+Transform {
+  translation 184.592 162.000 0.000
+  scale 18.000 18.000 1
+  children [
+    Transform {
+      rotation 1 0 0   1.57
+      children [
+        Shape {
+          geometry Cylinder { side FALSE }
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0.33
+              diffuseColor 1 1 1
+            }
+            texture ImageTexture { url "node9.png" }
+          }
+        }
+      ]
+    }
+  ]
+}
+# edge 4 -> 8
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 37.639 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 -36.000 -4.467
+      translation 148.592 171.000 0.000
+    }
+] }
+# edge 5 -> 6
+ Group { children [
+Shape { geometry Extrusion  {
+  spine [ 97.467 115.538 0.000 95.096 113.554 0.000 92.700 111.425 0.000 90.313 109.159 0.000 87.966 106.761 0.000 85.693 104.240 0.000 83.528 101.601 0.000 81.502 98.850 0.000 79.649 95.996 0.000 78.001 93.043 0.000 76.592 90.000 0.000 76.592 90.000 0.000 74.939 85.799 0.000 73.653 81.999 0.000 72.735 78.499 0.000 72.184 75.199 0.000 72.000 72.000 0.000 72.184 68.801 0.000 72.735 65.501 0.000 73.653 62.001 0.000 74.939 58.201 0.000 76.592 54.000 0.000 76.592 54.000 0.000 78.001 50.957 0.000 79.649 48.004 0.000 81.502 45.150 0.000 83.528 42.399 0.000 85.693 39.760 0.000 87.966 37.239 0.000 90.313 34.841 0.000 92.700 32.575 0.000 95.096 30.446 0.000 97.467 28.462 0.000 ]
+  crossSection [ 1.000 1.000, -1.000 1.000, -1.000 -1.000, 1.000 -1.000 ]
+}
+ appearance DEF E13 Appearance {
+   material Material {
+   ambientIntensity 0.33
+   diffuseColor 0.000 0.000 0.000
+   }
+ }
+}
+] }
+# edge 5 -> 8
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 43.819 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 36.000 -1.107
+      translation 148.592 144.000 0.000
+    }
+] }
+# node 9
+Transform {
+  translation 256.592 93.000 0.000
+  scale 18.000 18.000 1
+  children [
+    Transform {
+      rotation 1 0 0   1.57
+      children [
+        Shape {
+          geometry Cylinder { side FALSE }
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0.33
+              diffuseColor 1 1 1
+            }
+            texture ImageTexture { url "node10.png" }
+          }
+        }
+      ]
+    }
+  ]
+}
+# edge 5 -> 9
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 111.213 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 -72.000 -4.487
+      translation 184.592 109.500 0.000
+    }
+] }
+# edge 6 -> 7
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 52.769 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 36.000 -0.945
+      translation 148.592 44.000 0.000
+    }
+] }
+# edge 6 -> 9
+ Group { children [
+Shape { geometry Extrusion  {
+  spine [ 130.599 20.286 0.000 136.521 21.312 0.000 143.030 22.569 0.000 150.012 24.074 0.000 157.354 25.844 0.000 164.942 27.897 0.000 172.662 30.249 0.000 180.401 32.919 0.000 188.044 35.922 0.000 195.479 39.277 0.000 202.592 43.000 0.000 202.592 43.000 0.000 207.507 45.980 0.000 212.327 49.270 0.000 217.025 52.806 0.000 221.577 56.527 0.000 225.956 60.369 0.000 230.136 64.268 0.000 234.091 68.163 0.000 237.796 71.990 0.000 241.224 75.687 0.000 244.350 79.189 0.000 ]
+  crossSection [ 1.000 1.000, -1.000 1.000, -1.000 -1.000, 1.000 -1.000 ]
+}
+ appearance DEF E17 Appearance {
+   material Material {
+   ambientIntensity 0.33
+   diffuseColor 0.000 0.000 0.000
+   }
+ }
+}
+] }
+# edge 7 -> 9
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 39.081 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 36.000 -1.262
+      translation 220.592 81.500 0.000
+    }
+] }
+# edge 8 -> 9
+ Group { children [
+Transform {
+  children [
+    Shape {
+      geometry Cylinder {
+        bottom FALSE top FALSE
+        height 63.281 radius 1.000 }
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.33
+          diffuseColor 0.000 0.000 0.000
+        }
+      }
+    }
+      ]
+      center 0 0.000 0
+      rotation -0.000 0 -36.000 -3.948
+      translation 220.592 127.500 0.000
+    }
+] }
+  ] }
+  Viewpoint {position 5.093 3.667 16.394}
+] }
