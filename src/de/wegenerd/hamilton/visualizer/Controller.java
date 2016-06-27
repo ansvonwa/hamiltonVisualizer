@@ -1,9 +1,8 @@
 package de.wegenerd.hamilton.visualizer;
 
 import de.wegenerd.hamilton.visualizer.algorithms.SimpleAlgorithm;
+import de.wegenerd.hamilton.visualizer.graphs.GridGraphDetection;
 import javafx.animation.AnimationTimer;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -26,7 +28,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -134,7 +135,7 @@ public class Controller implements Initializable {
         });
         ObservableList<GraphFile> graphData = FXCollections.observableArrayList();
 
-        URL graphFolderUrl = getClass().getResource("./graphs/plaindot/");
+        URL graphFolderUrl = getClass().getResource("./graphs/original/");
         if (graphFolderUrl == null) {
             System.err.println("Could not load graph files");
             return;
@@ -183,29 +184,26 @@ public class Controller implements Initializable {
         }
         Node.reset();
         Edge.reset();
+        String[] firstLine = lines.remove(0).split(" ");
+        List<Node> nodes = new ArrayList<>();
+        int firstNode = Integer.parseInt(firstLine[0]), lastNode = Integer.parseInt(firstLine[1]);
+        for (int i = 0; i< lines.size(); i++) {
+            nodes.add(Node.create(i, -1, -1, this));
+        }
+        System.out.println(Node.get(firstNode));
+        Node.get(firstNode).setStartNode(true);
+        Node.get(lastNode).setEndNode(true);
         for (String line : lines) {
-            final String[] data = line.split(" ");
-            if (data[0].equals("node")) {
-                Node node = Node.create(data[1], data[2], data[3], this);
-                if (data[10].equals("green")) {
-                    node.setStartNode(true);
-                } else if (data[10].equals("yellow")) {
-                    node.setEndNode(true);
-                }
-            } else if (data[0].equals("edge")) {
-                Node from = Node.get(data[1]);
-                Node to = Node.get(data[2]);
-                if (from == null || to == null) {
-                    System.err.println("Edge definition with non existing node. Was the edge defined before the node?");
-                    continue;
-                }
-                Edge edge = from.connectTo(to);
-                ArrayList<String> dataList = new ArrayList<>(Arrays.asList(data));
-                int n = new Integer(data[3]);
-                final List<String> edgeCoordinates = dataList.subList(4, n * 2);
-                edge.setCoordinates(edgeCoordinates);
+            final String[] sData = line.trim().split(" ");
+            final int[] data = new int[sData.length];
+            for (int i = 0; i < sData.length; i++) {
+                data[i] = Integer.parseInt(sData[i]);
+            }
+            for (int i = 1; i < data.length; i++) {
+                Node.get(data[0]).connectTo(Node.get(data[i]));
             }
         }
+        new GridGraphDetection(nodes).setNodePlaces();
         currentGraph = graphFile;
         updateSizeFactor();
     }

@@ -6,7 +6,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -226,5 +225,9 @@ public class Node {
 
     public boolean isHighlight() {
         return highlight;
+    }
+
+    public int getId() {
+        return id;
     }
 }
